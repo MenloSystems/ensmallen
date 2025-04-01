@@ -179,6 +179,9 @@ class ActiveCMAES
   double& StepSize()
   { return stepSize; }
 
+  //! Get the total number of function evaluations.
+  size_t FunctionEvaluations() const  { return functionEvaluations; }
+
  private:
   //! Population size.
   size_t lambda;
@@ -202,6 +205,9 @@ class ActiveCMAES
 
   //! The step size.
   double stepSize;
+
+  //! Counter for the number of function evaluations.
+  size_t functionEvaluations = 0;
 };
 
 /**

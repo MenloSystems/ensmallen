@@ -145,6 +145,7 @@ typename MatType::elem_type ActiveCMAES<SelectionPolicyType,
     terminate |= Callback::Evaluate(*this, function, transformedIterate,
         objective, callbacks...);
   }
+  functionEvaluations += numFunctions;
 
   ElemType overallObjective = currentObjective;
   ElemType lastObjective = std::numeric_limits<ElemType>::max();
@@ -230,6 +231,8 @@ typename MatType::elem_type ActiveCMAES<SelectionPolicyType,
     currentObjective = selectionPolicy.Select(function, batchSize,
         transformationPolicy.Transform(mPosition[idx1]), terminate,
         callbacks...);
+
+    functionEvaluations += lambda;
 
     // Update best parameters.
     if (currentObjective < overallObjective)
